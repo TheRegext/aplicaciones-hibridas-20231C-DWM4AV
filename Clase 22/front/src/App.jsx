@@ -1,22 +1,23 @@
-import ProductList from "./ProductList"
+import { Outlet, Link } from 'react-router-dom'
+
 import 'minireset.css'
 import './App.css'
-/**
- * PascalCase - Componentes - Clases
- * camelCase - Variables (mutables o inmutables), funciones
- * snake_case - Variables, funciones
- * kebab-case - clases en css
- */
-
-
-
 export function App(){
 
     return (
     <div>
-        <h1>Lista de Productos</h1>
-        <p>Nuestros mejores a al alcance de un click</p>
-        <ProductList />
+       <nav>
+            <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/products">Productos</Link>
+                </li>
+            </ul>
+        </nav>
+        <Outlet />
+
     </div>)
 }
 

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import './ProductListItem.css'
 
@@ -9,7 +10,7 @@ function ProductListItem({product}){
                 <h3 className='product-name'>{product.name} <span className="product-code">Codigo: {product._id}</span></h3>
                 <span className='product-price'>Precio: ${product.price}</span>
                 <div className='product-actions'>
-                    <a href='#' className='product-view'>Ver producto</a>
+                    <Link to={`/products/${product._id}`} className='product-view'>Ver producto</Link>
                 </div>
             </div>
         </li>
