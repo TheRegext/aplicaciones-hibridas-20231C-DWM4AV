@@ -1,4 +1,4 @@
-import * as productScheme from '../schemes/products.schemes.js'
+import * as productScheme from '../schemas/products.schemas.js'
 
 function validateProduct(req, res, next) {
     productScheme.product.validate(req.body, { abortEarly: false, stripUnknown: true })
