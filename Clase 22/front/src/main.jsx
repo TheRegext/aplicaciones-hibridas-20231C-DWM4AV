@@ -4,6 +4,8 @@ import App from './App'
 import Error404 from './pages/Error404'
 import ProductListPage from './pages/products/ProductListPage'
 import ProductDetailsPage from './pages/products/ProductDetailsPage'
+import LoginPage from './pages/LoginPage'
+import RoutePrivate from './components/RoutePrivate'
 import {
   createBrowserRouter, // crea el contexto de la ruta
   RouterProvider
@@ -13,7 +15,9 @@ import {
 const router = createBrowserRouter([
   {
     path: '/', // la url de la pagina
-    element: <App />, // pagina
+    element:<RoutePrivate>
+              <App />
+            </RoutePrivate>, // pagina
     errorElement: <Error404 />,
     children: [
       {
@@ -26,7 +30,10 @@ const router = createBrowserRouter([
       }
     ]
   },
-  
+  {
+    path:'/login',
+    element: <LoginPage />
+  }
   
 ])
 

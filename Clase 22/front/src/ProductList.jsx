@@ -1,4 +1,5 @@
 import ProductListItem from "./ProductListItem"
+import * as productService from "./services/products.service"
 import './ProductList.css'
 import { useEffect, useState } from "react"
 
@@ -12,11 +13,13 @@ function ProductList(){
 
     // ejercutar la funcion cuando se monta el componente
     useEffect(()=>{
-        fetch('http://localhost:2023/api/products')
-        .then(response => response.json())
+        productService.getAll()
         .then(data =>{
             setProductsAll(data)
             setProducts(data)
+        })
+        .catch(err =>{
+            console.log(err)
         })
 
     }, [])

@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react'
+import * as productService from '../../services/products.service'
 import {useParams} from 'react-router-dom'
 
 function ProductDetailsPage(){
@@ -7,8 +8,7 @@ function ProductDetailsPage(){
     const {idProduct} = useParams()
 
     useEffect(()=>{
-        fetch(`http://localhost:2023/api/products/${idProduct}`)
-        .then(response => response.json())
+        productService.getById(idProduct)
         .then(data =>{
             if(data){
                 setProduct(data)
