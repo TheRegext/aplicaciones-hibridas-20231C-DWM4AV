@@ -1,10 +1,31 @@
 import * as service from '../../services/account.services.js'
 import * as tokenService from '../../services/token.services.js'
+import * as profileService from '../../services/profile.services.js'
 
 async function createAccount(req, res) {
     return service.createAccount(req.body)
         .then(() => {
             res.status(201).json({ message: 'La cuenta fue creado correctamente' })
+        })
+        .catch((err) => {
+            res.status(400).json({ error: { message: err.message } })
+        })
+}
+
+async function createProfile(req, res) {
+    return profileService.createProfile(req.account, req.body)
+        .then(() => {
+            res.status(201).json({ message: "Perfil actualizado correctamente." })
+        })
+        .catch((err) => {
+            res.status(400).json({ error: { message: err.message } })
+        })
+}
+
+async function getProfile(req, res) {
+    profileService.getProfile(req.account._id)
+        .then((profile) => {
+            res.status(200).json(profile)
         })
         .catch((err) => {
             res.status(400).json({ error: { message: err.message } })
@@ -43,5 +64,7 @@ async function logout(req, res) {
 export {
     createAccount,
     login,
-    logout
+    logout,
+    createProfile,
+    getProfile
 }

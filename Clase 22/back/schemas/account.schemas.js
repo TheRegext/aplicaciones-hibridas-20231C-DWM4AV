@@ -5,8 +5,15 @@ const account = yup.object({
     password: yup.string().required().min(3)
 })
 
+const profile = yup.object({
+    avatar: yup.string().url().required().trim(),
+    name: yup.string().trim().required().min(3),
+    email: yup.string().email().required()
+})
+
 export {
-    account
+    account,
+    profile
 }
 
 

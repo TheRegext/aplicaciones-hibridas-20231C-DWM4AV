@@ -11,6 +11,20 @@ async function validateAccount(req, res, next) {
         })
 }
 
+
+async function validateProfile(req, res, next) {
+    return scheme.profile.validate(req.body, { abortEarly: false, stripUnknown: true })
+        .then((profile) => {
+            req.body = profile
+            next();
+        })
+        .catch((err) => {
+            res.status(400).json(err)
+        })
+}
+
+
 export {
-    validateAccount
+    validateAccount,
+    validateProfile
 }

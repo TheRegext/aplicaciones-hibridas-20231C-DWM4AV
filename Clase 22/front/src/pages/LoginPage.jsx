@@ -19,7 +19,7 @@ function LoginPage(){
 
     const onSubmit = (event) =>{
         event.preventDefault()
-        authService.login(userName, password)
+        authService.login({userName, password})
         .then((data)=>{
             setError('')
             localStorage.setItem('token', data.token)

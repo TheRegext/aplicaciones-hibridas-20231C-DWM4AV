@@ -11,6 +11,10 @@ const router = Router()
 // /account/regiter
 router.post('/account', [validate.validateAccount], controller.createAccount)
 
+router.get('/profile', [tokenVerify], controller.getProfile)
+router.post('/profile', [tokenVerify, validate.validateProfile], controller.createProfile)
+
+
 // autentificar un usuario
 router.post('/session', [validate.validateAccount], controller.login)
 router.delete('/session', [tokenVerify], controller.logout)

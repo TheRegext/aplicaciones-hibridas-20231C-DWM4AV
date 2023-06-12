@@ -1,34 +1,16 @@
-import { useNavigate, Outlet, Link } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
+import { SessionProvider } from './contexts/session.context.jsx'
 
 import 'minireset.css'
 import './App.css'
+import MainHeader from './components/MainHeader'
 export function App(){
-    const navigate = useNavigate()
-
-    const logout = () =>{
-        localStorage.removeItem('token')
-        navigate('/login', {replace: true})
-    }
-
-    return (
-    <div>
-       <nav>
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/products">Productos</Link>
-                </li>
-                <li>
-                    <Link onClick={logout}>Salir</Link>
-                </li>
-
-            </ul>
-        </nav>
+  
+   return (
+    <SessionProvider>
+        <MainHeader />
         <Outlet />
-
-    </div>)
+    </SessionProvider>)
 }
 
 export default App
