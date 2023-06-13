@@ -7,8 +7,8 @@ function MainNav(){
     const profile = useProfile()
     const onLogout = useLogout()
 
-
-    return (<nav className="main-nav">
+    return (
+    <nav className="main-nav">
         <ul className="main-nav-list">
             <li>
                 <Link to="/" className="main-nav-list__link">Home</Link>
@@ -19,9 +19,9 @@ function MainNav(){
             <li>
                 <Link onClick={onLogout} className="main-nav-list__link">Salir ({profile.userName})</Link>
             </li>
-
         </ul>
-    </nav>)
+    </nav>
+    )
 }
 
 export default MainNav

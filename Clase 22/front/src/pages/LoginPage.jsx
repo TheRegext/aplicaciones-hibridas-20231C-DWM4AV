@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import './LoginPage.css'
 import { useNavigate } from 'react-router-dom'
 import * as authService from '../services/auth.service'
@@ -9,15 +9,15 @@ function LoginPage(){
     const [error, setError] = useState('')
     const navigate = useNavigate()
 
-    const onChangeUserName = (event)=>{
+    const onChangeUserName = useCallback((event)=>{
         setUserName(event.target.value)
-    }
+    }, [setUserName])
 
-    const onChangePassword = (event)=>{
+    const onChangePassword = useCallback((event)=>{
         setPassword(event.target.value)
-    }
+    },[setPassword])
 
-    const onSubmit = (event) =>{
+    const onSubmit = useCallback((event) =>{
         event.preventDefault()
         authService.login({userName, password})
         .then((data)=>{
@@ -31,7 +31,7 @@ function LoginPage(){
             setError(err.error.message)
         })
 
-    }
+    },[setError, userName, password, navigate])
 
     return (
         <div className="login-page">
